@@ -1,6 +1,9 @@
+package test;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import sudoku.Entero_historial;
 
 public class Tests_Entero_historial {
 

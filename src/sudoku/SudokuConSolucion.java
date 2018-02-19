@@ -1,10 +1,12 @@
+package sudoku;
+import grafo.GrafoConColores;
 
 public class SudokuConSolucion extends Sudoku{
 	private GrafoConColores gr;
 	
 	private void construirGrafoInicial( ){
 		  this.gr=new GrafoConColores();
-		  int numFilas=super.tamañoSudoku();
+		  int numFilas=super.tamanoSudoku();
 		  int numVertices=numFilas*numFilas;
 		  for (int v=1; v<=numVertices; v++)
 		    this.gr.aniadirVertice(v);
@@ -66,7 +68,7 @@ public class SudokuConSolucion extends Sudoku{
 	}
 	
 	public SudokuConSolucion(int tamaño){
-		/* {Precondición: tamaño es una variable de tipo entero y cuyo valor puede ir entre 1 e infinito}
+		/* {Postcondicion: tamaño es una variable de tipo entero y cuyo valor puede ir entre 1 e infinito}
 		 * {Postcondición: construye la superclase así como el atributo gr de dicho objeto}
 		 */
 		
@@ -77,45 +79,45 @@ public class SudokuConSolucion extends Sudoku{
 		this.construirGrafoInicial();
 	}
 	
-	public void añadirNumeroInicial(int numero,int fila, int columna) {
-		/* {Precondición: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku. La variable número será de tipo entero entre [1,tamañoSudoku]}
+	public void anadirNumeroInicial(int numero,int fila, int columna) {
+		/* {Postcondicion: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku. La variable número será de tipo entero entre [1,tamañoSudoku]}
 		 * {Postcondición: añade un objeto de tipo Entero_historial en la posición que indica la intersección de la fila y la columna.
 		 * Dicho objeto se construye con el parámetro número y true}
 		 */
-		super.añadirNumeroInicial(numero, fila, columna);
-		this.gr.aniadirColorAVertice(fila*super.tamañoSudoku()+columna+1, numero);
+		super.anadirNumeroInicial(numero, fila, columna);
+		this.gr.aniadirColorAVertice(fila*super.tamanoSudoku()+columna+1, numero);
 	}
 	
-	public void añadirNumero(int numero,int fila, int columna) {
-		/* {Precondición: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku. La variable número será de tipo entero entre [1,tamañoSudoku]}
+	public void anadirNumero(int numero,int fila, int columna) {
+		/* {Postcondicion: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku. La variable número será de tipo entero entre [1,tamañoSudoku]}
 		 * {Postcondición: añade un objeto de tipo Entero_historial en la posición que indica la intersección de la fila y la columna.
 		 * Dicho objeto se construye con el parámetro número y false}
 		 */
-		super.añadirNumero(numero, fila, columna);
-		this.gr.aniadirColorAVertice(fila*super.tamañoSudoku()+columna+1, numero);
+		super.anadirNumero(numero, fila, columna);
+		this.gr.aniadirColorAVertice(fila*super.tamanoSudoku()+columna+1, numero);
 	}
 	
 	public void eliminarNumeroACasilla(int fila, int columna) {
-		/* {Precondición: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku}
+		/* {Postcondicion: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku}
 		 * {Postcondición: eliminan de la superclase el valor, luego elimina el color asociado a ese vértice del grafo
 		 * y por último elemina dicho vértice}
 		 */
 		super.eliminarNumeroACasilla(fila, columna);
-		this.gr.eliminarColorVertice(fila*super.tamañoSudoku()+columna+1);
+		this.gr.eliminarColorVertice(fila*super.tamanoSudoku()+columna+1);
 	}
 	
 	public boolean sePuedeResolverSudoku (){
-		/* {Precondición: }
+		/* {Postcondicion: }
 		 * {Postcondición: devuelve cierto si se puede colorear el grafo y falso en caso contrario}
 		 */
 		GrafoConColores aux =  this.gr;
-		return aux.colorear(super.tamañoSudoku());
+		return aux.colorear(super.tamanoSudoku());
 	}
 	
 	public void resolverSudoku () {
-		/* {Precondición: }
+		/* {Postcondicion: }
 		 * {Postcondición: resuelve el sudoku, para ello se remite a resolver el problema de colorear el grafo}
 		 */
-		this.gr.colorear(super.tamañoSudoku());
+		this.gr.colorear(super.tamanoSudoku());
 	}
 }

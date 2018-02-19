@@ -1,9 +1,12 @@
+package test;
 import static org.junit.Assert.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
+
+import grafo.GrafoConColores;
 
 public class Tests_GrafoConColores {
 

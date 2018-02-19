@@ -1,19 +1,20 @@
+package grafo;
 import java.util.*;
 
 public class Grafo{
 	private Map<Integer,List<Integer>> grafo;
 	
 	public Grafo(){
-		/* {Precondición: }
-		 * {Postcondición: inicializa el atributo grafo como un HasMap<Integer,List<Integer>> y vacío. En dicho mapa la clave es
+		/* {Precondicion: }
+		 * {Postcondicion: inicializa el atributo grafo como un HasMap<Integer,List<Integer>> y vacío. En dicho mapa la clave es
 		 * el vértice y su valor asociado es la lista de vértices asociados}
 		*/
 		this.grafo=new HashMap<Integer,List<Integer>>();
 	}
 	
 	public boolean aniadirVertice(Integer vertice) {
-		/* {Precondición: vertice es un parámetro de tipo Integer}
-		 * {Postcondición: comprueba si dicho parámetro está, si está devuelve cierto y no lo añade.
+		/* {Precondicion: vertice es un parámetro de tipo Integer}
+		 * {Postcondicion: comprueba si dicho parámetro está, si está devuelve cierto y no lo añade.
 		 * En caso contrario lo añade y devuelve falso}
 		 */
 		boolean esta=(this.grafo.get(vertice)!=null);
@@ -24,8 +25,8 @@ public class Grafo{
 	}
 
 	public boolean eliminarVertice(Integer vertice) {
-		/* {Precondición: vertice es un parámetro de tipo Integer}
-		 * {Postcondición: si se encontraba dicho vértice devuelve cierto y lo elimina. En caso contrario sólo devuelve falso.}
+		/* {Precondicion: vertice es un parámetro de tipo Integer}
+		 * {Postcondicion: si se encontraba dicho vértice devuelve cierto y lo elimina. En caso contrario sólo devuelve falso.}
 		 */
 		List<Integer> asociados=this.grafo.get(vertice);
 		this.grafo.remove(vertice);
@@ -45,8 +46,8 @@ public class Grafo{
 	}
 	
 	public boolean aniadirArista(Integer vertice1,Integer vertice2) {
-		/* {Precondición: vertice1 y vertice2 son dos parámetros de tipo Integer y deben existir}
-		 * {Postcondición: al vertice1 le pone como vertice asociado el 2. Al vertice2 le asocia el 1}
+		/* {Precondicion: vertice1 y vertice2 son dos parámetros de tipo Integer y deben existir}
+		 * {Postcondicion: al vertice1 le pone como vertice asociado el 2. Al vertice2 le asocia el 1}
 		 */
 		List<Integer> dato1=(LinkedList<Integer>)this.grafo.get(vertice1);
 		List<Integer> dato2=(LinkedList<Integer>)this.grafo.get(vertice2);
@@ -59,8 +60,8 @@ public class Grafo{
 	}
 	
 	public boolean eliminarArista(Integer vertice1,Integer vertice2) {
-		/* {Precondición: vertice1 y vertice2 son dos parámetros de tipo Integer}
-		 * {Postcondición: al vertice1 le elimina como vertice asociado el 2. Al vertice2 le elimina el 1}
+		/* {Precondicion: vertice1 y vertice2 son dos parámetros de tipo Integer}
+		 * {Postcondicion: al vertice1 le elimina como vertice asociado el 2. Al vertice2 le elimina el 1}
 		 */
 		List<Integer> dato1=(LinkedList<Integer>)this.grafo.get(vertice1);
 		List<Integer> dato2=(LinkedList<Integer>)this.grafo.get(vertice2);
@@ -82,15 +83,15 @@ public class Grafo{
 	}
 	
 	public int numeroVertices() {
-		/* {Precondición: }
-		 * {Postcondición: devuelve el número de vértices que hay en todo el grafo}
+		/* {Precondicion: }
+		 * {Postcondicion: devuelve el número de vértices que hay en todo el grafo}
 		 */
 		return this.grafo.size();
 	}
 	
 	public boolean sonAdyacentes(Integer vertice1,Integer vertice2) {
-		/* {Precondición: vertice1 y vertice2 son dos parámetros de tipo Integer}
-		 * {Postcondición: comprueba si en los vértices asociados al 1 está el 2.
+		/* {Precondicion: vertice1 y vertice2 son dos parámetros de tipo Integer}
+		 * {Postcondicion: comprueba si en los vértices asociados al 1 está el 2.
 		 * Comprueba si en los vértices asociados al 2 se encuentra el 1}
 		 */
 		List<Integer> dato1=(LinkedList<Integer>)this.grafo.get(vertice1);
@@ -99,22 +100,22 @@ public class Grafo{
 	}
 	
 	public boolean estaVertice(Integer vertice1) {
-		/* {Precondición: vertice1 es un parámetro de tipo Integer}
-		 * {Postcondición: de vuelve cierto si el grafo contiene a dicho vértice y falso en caso contrario}
+		/* {Precondicion: vertice1 es un parámetro de tipo Integer}
+		 * {Postcondicion: de vuelve cierto si el grafo contiene a dicho vértice y falso en caso contrario}
 		 */
 		return this.grafo.containsKey(vertice1);
 	}
 	
 	public Set<Integer> listarVertices(){
-		/* {Precondición: }
-		 * {Postcondición: devuelve un Set<Integer> con todos los vértices del grafo}
+		/* {Precondicion: }
+		 * {Postcondicion: devuelve un Set<Integer> con todos los vértices del grafo}
 		 */
 		return this.grafo.keySet();
 	}
 	
 	public List<Integer> listarVerticesAdyacentes(Integer vertice){
-		/* {Precondición: vertice1 es un parámetro de tipo Integer}
-		 * {Postcondición: devuelve una Lista de Integers con todos los vértices asociados a uno dado}
+		/* {Precondicion: vertice1 es un parámetro de tipo Integer}
+		 * {Postcondicion: devuelve una Lista de Integers con todos los vértices asociados a uno dado}
 		 */
 		return this.grafo.get(vertice);
 	}
