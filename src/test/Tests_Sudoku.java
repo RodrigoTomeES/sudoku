@@ -8,7 +8,7 @@ import sudoku.Sudoku;
 public class Tests_Sudoku {
 
 	@Test
-	public void testConstructorSudoku() {
+	public void testConstructorSudoku_TamañoSudoku() {
 		Sudoku prueba1 = new Sudoku(0);
 		assertEquals(prueba1.tamanoSudoku(),0);
 		Sudoku prueba2 = new Sudoku(3);
@@ -19,12 +19,17 @@ public class Tests_Sudoku {
 	
 	@Test
 	public void testGetSudokuInicial() {
-		
-	}
-	
-	@Test
-	public void testTamañoSudoku() {
-		
+		Sudoku prueba = new Sudoku(9);
+		for(int i=1;i<=9;i++) {
+			for(int j=1;j<=9;j++) {
+				prueba.anadirNumero(4, i, j);
+			}
+		}
+		for(int i=0;i<9;i++) {
+			for(int j=0;j<9;j++) {
+				assertEquals(prueba.getSudokuInicial()[i][j].getNumero(),4);
+			}
+		}
 	}
 	
 	@Test

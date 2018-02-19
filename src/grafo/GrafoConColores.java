@@ -167,5 +167,15 @@ public class GrafoConColores extends Grafo {
 
 	  }
 
-
+	 public GrafoConColores clone() {
+		 Grafo aux = super.clone();
+		 GrafoConColores resultado = (GrafoConColores)aux;
+		 Set<Integer> verticesConColores = this.listarVerticesConColores();
+		 Iterator it = verticesConColores.iterator();
+		 while(it.hasNext()) {
+			 Integer colorAsociado = this.verticesColoreado.get(it.next());
+			 resultado.aniadirColorAVertice((Integer)it.next(), colorAsociado); 
+		 }
+		 return resultado;
+	 }
 }

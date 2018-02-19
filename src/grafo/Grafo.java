@@ -120,5 +120,15 @@ public class Grafo{
 		return this.grafo.get(vertice);
 	}
 	
-	
+	public Grafo clone() {
+		Grafo copia = new Grafo();
+		Set<Integer> auxCopia = this.listarVertices();
+		Iterator it = auxCopia.iterator();
+		while(it.hasNext()) {
+			Integer vertice = (Integer)it.next();
+			List<Integer> asociados = this.listarVerticesAdyacentes(vertice);
+			copia.grafo.put(vertice, asociados);
+		}
+		return copia;
+	}
 }
