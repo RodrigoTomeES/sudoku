@@ -33,7 +33,7 @@ public class Tests_Sudoku {
 	}
 	
 	@Test
-	public void testAñadirNumero() {
+	public void testAnadirNumero() {
 		Sudoku prueba1 = new Sudoku(9);
 		prueba1.anadirNumero(5, 7, 7);
 		assertEquals(prueba1.obtenerValorDeCasilla(7,7).getNumero(),5);
@@ -47,7 +47,7 @@ public class Tests_Sudoku {
 	}
 	
 	@Test
-	public void testAñadirNumeroInicial() {
+	public void testAnadirNumeroInicial() {
 		Sudoku prueba1 = new Sudoku(9);
 		prueba1.anadirNumeroInicial(5, 7, 7);
 		assertEquals(prueba1.obtenerValorDeCasilla(7,7).getNumero(),5);
@@ -65,20 +65,49 @@ public class Tests_Sudoku {
 		Sudoku prueba1 = new Sudoku(9);
 		
 		prueba1.anadirNumeroInicial(5, 7, 7);
-		assertEquals(prueba1.obtenerValorDeCasilla(7,7),5);
+		assertEquals(prueba1.obtenerValorDeCasilla(7,7).getNumero(),5);
 		prueba1.anadirNumeroInicial(3, 3, 1);
-		assertEquals(prueba1.obtenerValorDeCasilla(3,1),3);
+		assertEquals(prueba1.obtenerValorDeCasilla(3,1).getNumero(),3);
 		prueba1.anadirNumeroInicial(1, 2, 5);
-		assertEquals(prueba1.obtenerValorDeCasilla(2,5),1);
+		assertEquals(prueba1.obtenerValorDeCasilla(2,5).getNumero(),1);
 		
 		prueba1.eliminarNumeroACasilla(7,7);
-		assertEquals(prueba1.obtenerValorDeCasilla(7,7),null);
+		assertEquals(prueba1.obtenerValorDeCasilla(7,7).getNumero(),-1);
 		prueba1.eliminarNumeroACasilla(3,1);
+		assertEquals(prueba1.obtenerValorDeCasilla(3,1).getNumero(),-1);
 		prueba1.eliminarNumeroACasilla(2,5);
+		assertEquals(prueba1.obtenerValorDeCasilla(2,5).getNumero(),-1);
 	}
 	
 	@Test
-	public void volverAlEstadoInicial() {
+	public void testVolverAlEstadoInicial() {
+		Sudoku prueba = new Sudoku(2);
+
+		prueba.anadirNumeroInicial(1, 1, 1);
+		prueba.anadirNumeroInicial(1, 2, 2);
+		
+		prueba.anadirNumero(1, 1, 2);
+		prueba.anadirNumero(1, 2, 1);
+		
+		assertEquals(prueba.getSudokuInicial()[0][0].getNumero(),1);
+		assertTrue(prueba.getSudokuInicial()[0][0].getEstadoInicial());
+		assertEquals(prueba.getSudokuInicial()[1][1].getNumero(),1);
+		assertTrue(prueba.getSudokuInicial()[1][1].getEstadoInicial());
+		
+		prueba.volverAlEstadoInicial();
+		
+		assertEquals(prueba.getSudokuInicial()[0][1].getNumero(),-1);
+		assertFalse(prueba.getSudokuInicial()[0][1].getEstadoInicial());
+		assertEquals(prueba.getSudokuInicial()[1][0].getNumero(),-1);
+		assertFalse(prueba.getSudokuInicial()[1][0].getEstadoInicial());
+	}
+	
+	@Test
+	public void testEsCorrectoAnadirValorACasilla() {
+		Sudoku prueba = new Sudoku(9);
+
+		prueba.anadirNumeroInicial(1, 1, 1);
+		assertFalse(prueba.esCorrectoAnadirValorACasilla(1, 2, 2));
 		
 	}
 }

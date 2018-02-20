@@ -1,4 +1,7 @@
 package sudoku;
+import java.util.Iterator;
+import java.util.Set;
+
 import grafo.GrafoConColores;
 
 public class SudokuConSolucion extends Sudoku{
@@ -9,7 +12,7 @@ public class SudokuConSolucion extends Sudoku{
 		  int numFilas=super.tamanoSudoku();
 		  int numVertices=numFilas*numFilas;
 		  for (int v=1; v<=numVertices; v++)
-		    this.gr.aniadirVertice(v);
+		    this.gr.anadirVertice(v);
 		  //gr es el nombre del atributo de Sudoku que contiene el grafo con colores
 		
 		  //Añado aristas para todas las parejas de vértices que están en la misma fila
@@ -18,7 +21,7 @@ public class SudokuConSolucion extends Sudoku{
 		      for (int k = j + 1; k < numFilas ; k++) {
 		        int v1=numFilas*i + j+1;
 		        int v2=numFilas*i + k+1;
-		        this.gr.aniadirArista(v1,v2);
+		        this.gr.anadirArista(v1,v2);
 		      }
 		    }
 		  }
@@ -30,7 +33,7 @@ public class SudokuConSolucion extends Sudoku{
 		      for (int k = i + 1; k < numFilas ; k++) {
 		        int v1=numFilas*i + j+1;
 		        int v2=numFilas*k + j+1;
-		        this.gr.aniadirArista(v1,v2);
+		        this.gr.anadirArista(v1,v2);
 		      }
 		    }
 		  }
@@ -49,7 +52,7 @@ public class SudokuConSolucion extends Sudoku{
 			              int v1 = numFilas * i1 + j1 + 1;
 			              int v2 = numFilas * i2 + j2 + 1;
 			              if ((v2 != v1) && !this.gr.sonAdyacentes(v1, v2))
-			                this.gr.aniadirArista(v1, v2);
+			                this.gr.anadirArista(v1, v2);
 			            }
 			          }
 			        }
@@ -61,14 +64,14 @@ public class SudokuConSolucion extends Sudoku{
 		 // valores iniciales del sudoku
 		 for (int i=0; i<numFilas; i++){
 		   for (int j=0; j<numFilas; j++){
-		     if (this.getSudokuInicial()[i][j].getNumero()!=0)
-		       this.gr.aniadirColorAVertice(i*numFilas+j+1,this.getSudokuInicial()[i][j].getNumero());
+		     if (this.getSudokuInicial()[i][j].getEstadoInicial())
+		       this.gr.anadirColorAVertice(i*numFilas+j+1,this.getSudokuInicial()[i][j].getNumero());
 		   }
 		 }
 	}
 	
 	public SudokuConSolucion(int tamaño){
-		/* {Postcondicion: tamaño es una variable de tipo entero y cuyo valor puede ir entre 1 e infinito}
+		/* {Precondición: tamaño es una variable de tipo entero y cuyo valor puede ir entre [0,9] y debe ser un cuadrado perfecto}
 		 * {Postcondición: construye la superclase así como el atributo gr de dicho objeto}
 		 */
 		
@@ -79,26 +82,29 @@ public class SudokuConSolucion extends Sudoku{
 		this.construirGrafoInicial();
 	}
 	
+	@Override
 	public void anadirNumeroInicial(int numero,int fila, int columna) {
-		/* {Postcondicion: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku. La variable número será de tipo entero entre [1,tamañoSudoku]}
+		/* {Precondición: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku. La variable número será de tipo entero entre [1,tamañoSudoku]}
 		 * {Postcondición: añade un objeto de tipo Entero_historial en la posición que indica la intersección de la fila y la columna.
 		 * Dicho objeto se construye con el parámetro número y true}
 		 */
 		super.anadirNumeroInicial(numero, fila, columna);
-		this.gr.aniadirColorAVertice(fila*super.tamanoSudoku()+columna+1, numero);
+		this.gr.anadirColorAVertice(fila*super.tamanoSudoku()+columna+1, numero);
 	}
 	
+	@Override
 	public void anadirNumero(int numero,int fila, int columna) {
-		/* {Postcondicion: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku. La variable número será de tipo entero entre [1,tamañoSudoku]}
+		/* {Precondición: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku. La variable número será de tipo entero entre [1,tamañoSudoku]}
 		 * {Postcondición: añade un objeto de tipo Entero_historial en la posición que indica la intersección de la fila y la columna.
 		 * Dicho objeto se construye con el parámetro número y false}
 		 */
 		super.anadirNumero(numero, fila, columna);
-		this.gr.aniadirColorAVertice(fila*super.tamanoSudoku()+columna+1, numero);
+		this.gr.anadirColorAVertice(fila*super.tamanoSudoku()+columna+1, numero);
 	}
 	
+	@Override
 	public void eliminarNumeroACasilla(int fila, int columna) {
-		/* {Postcondicion: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku}
+		/* {Precondición: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku}
 		 * {Postcondición: eliminan de la superclase el valor, luego elimina el color asociado a ese vértice del grafo
 		 * y por último elemina dicho vértice}
 		 */
@@ -107,17 +113,27 @@ public class SudokuConSolucion extends Sudoku{
 	}
 	
 	public boolean sePuedeResolverSudoku (){
-		/* {Postcondicion: }
+		/* {Precondición: }
 		 * {Postcondición: devuelve cierto si se puede colorear el grafo y falso en caso contrario}
 		 */
-		GrafoConColores aux =  this.gr;
+		GrafoConColores aux = this.gr.clone();
 		return aux.colorear(super.tamanoSudoku());
 	}
 	
 	public void resolverSudoku () {
-		/* {Postcondicion: }
+		/* {Precondición: }
 		 * {Postcondición: resuelve el sudoku, para ello se remite a resolver el problema de colorear el grafo}
 		 */
-		this.gr.colorear(super.tamanoSudoku());
+		if(this.gr.colorear(super.tamanoSudoku())) {
+			Set<Integer> verticesColoreados = this.gr.listarVerticesConColores();
+			Iterator<Integer> it = verticesColoreados.iterator();
+			while(it.hasNext()) {
+				Integer vertice = it.next();
+				Integer colorAsociado = this.gr.getColorVertice(vertice);
+				super.anadirNumero(colorAsociado, (vertice-1)/super.tamanoSudoku()+1, (vertice-1)%super.tamanoSudoku()+1);
+			}			
+		} else {
+			System.out.println("Error no tiene solución");
+		}
 	}
 }

@@ -3,5 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_152/lib/missioncontrol/plugins/org.eclipse.swt.win32.win32.x86_64_3.103.1.v20140903-1947.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

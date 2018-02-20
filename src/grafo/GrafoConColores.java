@@ -5,8 +5,8 @@ public class GrafoConColores extends Grafo {
 	private Map<Integer,Integer> verticesColoreado;
 	
 	public GrafoConColores() {
-		/* {Precondicion: }
-		 * {Postcondicion: construye la superclase y construye el atributo verticesColoreado como un HashMap<Integer,Integer>,
+		/* {Precondición: }
+		 * {Postcondición: construye la superclase y construye el atributo verticesColoreado como un HashMap<Integer,Integer>,
 		 * dónde irá guardando para cada vértice, su color asociado. Este atributo está formado por la clave que será el vértice
 		 * y el valor asociado que es el color}
 		 */
@@ -14,9 +14,9 @@ public class GrafoConColores extends Grafo {
 		this.verticesColoreado=new HashMap<Integer,Integer>();
 	}
 	
-	public boolean aniadirColorAVertice(Integer vertice, Integer color) {
-		/* {Precondicion: vertice y color son dos parámetros de tipo Integer.}
-		 * {Postcondicion: comprueba en la lista de claves si está el parámetro vértice. Si no está, añade dicho vertice y su color y devuelve falso.
+	public boolean anadirColorAVertice(Integer vertice, Integer color) {
+		/* {Precondición: vertice y color son dos parámetros de tipo Integer.}
+		 * {Postcondición: comprueba en la lista de claves si está el parámetro vértice. Si no está, añade dicho vertice y su color y devuelve falso.
 		 * En caso contrario devuelve cierto y no lo añade}
 		 */
 		boolean esta=this.verticesColoreado.get(vertice)!=null;
@@ -27,8 +27,8 @@ public class GrafoConColores extends Grafo {
 	}
 	
 	public boolean eliminarColorVertice(Integer vertice) {
-		/* {Precondicion: vertice es un parámetro de tipo Integer}
-		 * {Postcondicion: si se encontraba dicho vértice devuelve cierto y lo elimina. En caso contrario sólo devuelve falso.}
+		/* {Precondición: vertice es un parámetro de tipo Integer}
+		 * {Postcondición: si se encontraba dicho vértice devuelve cierto y lo elimina. En caso contrario sólo devuelve falso.}
 		 */
 		boolean esta=this.verticesColoreado.get(vertice)!=null;
 		if(esta) {
@@ -38,48 +38,48 @@ public class GrafoConColores extends Grafo {
 	}
 	
 	public Integer getColorVertice(Integer vertice) {
-		/* {Precondicion: vertice es un parámetro de tipo Integer}
-		 * {Postcondicion: devuelve el color asociado a dicho vertice}
+		/* {Precondición: vertice es un parámetro de tipo Integer}
+		 * {Postcondición: devuelve el color asociado a dicho vertice}
 		 */
 		return (Integer)this.verticesColoreado.get(vertice);
 	}
 	
 	public void borrarTodosLosColores() {
-		/* {Precondicion: }
-		 * {Postcondicion: para borrar todos los colores lo que se hace es borrar todo el mapa de verticesColoreado}
+		/* {Precondición: }
+		 * {Postcondición: para borrar todos los colores lo que se hace es borrar todo el mapa de verticesColoreado}
 		 */
 		this.verticesColoreado.clear();
 	}
 	
 	public Set<Integer> listarVerticesConColores(){
-		/* {Precondicion: }
-		 * {Postcondicion: devuelve un Set<Integer> el cuál contiene todas las claves del mapa verticesColoreado,
+		/* {Precondición: }
+		 * {Postcondición: devuelve un Set<Integer> el cuál contiene todas las claves del mapa verticesColoreado,
 		 * ya que todos esos vértiecs tienen colores}
 		 */
 		return this.verticesColoreado.keySet();
 	}
 	
 	public boolean esColorValido(Integer vertice,Integer color) {
-		/* {Precondicion: vertice y color son dos parámetros de tipo Integer}
-		 * {Postcondicion: comprueba si es un color válido para dicho vértice. Para ello comprueba si es distinto del color de sus vértices asociados.}
+		/* {Precondición: vertice y color son dos parámetros de tipo Integer}
+		 * {Postcondición: comprueba si es un color válido para dicho vértice. Para ello comprueba si es distinto del color de sus vértices asociados.}
 		 */
 		List<Integer> verticesAdyacentes=super.listarVerticesAdyacentes(vertice);
 		boolean colorValido=true;
 		
 		//PREGUNTAR
 		
-		Iterator it = verticesAdyacentes.iterator();
+		Iterator<Integer> it = verticesAdyacentes.iterator();
 		
-		while(it.hasNext()) {
-			Integer aux=(Integer)it.next();
+		while(it.hasNext()&&colorValido) {
+			Integer aux=it.next();
 			colorValido=colorValido&&(color!=this.verticesColoreado.get(aux));
 		}
 		return colorValido;
 	}
 	
 	public boolean colorear(int numColores){
-		/* {Precondicion: }
-		 * {Postcondicion: }
+		/* {Precondición: }
+		 * {Postcondición: }
 		 */
 	    List<Integer> listaVertices;
 	    // lista auxiliar en la que colocaré todos los vértices
@@ -167,14 +167,14 @@ public class GrafoConColores extends Grafo {
 
 	  }
 
-	 public GrafoConColores clone() {
-		 Grafo aux = super.clone();
-		 GrafoConColores resultado = (GrafoConColores)aux;
-		 Set<Integer> verticesConColores = this.listarVerticesConColores();
-		 Iterator it = verticesConColores.iterator();
+	 @Override
+	 public GrafoConColores clone() {	 
+		 GrafoConColores resultado = (GrafoConColores) super.clone();
+		 Set<Integer> verticesConColores = new LinkedHashSet<>(this.listarVerticesConColores());
+		 Iterator<Integer> it = verticesConColores.iterator();
 		 while(it.hasNext()) {
 			 Integer colorAsociado = this.verticesColoreado.get(it.next());
-			 resultado.aniadirColorAVertice((Integer)it.next(), colorAsociado); 
+			 resultado.anadirColorAVertice(new Integer(it.next()), colorAsociado); 
 		 }
 		 return resultado;
 	 }
