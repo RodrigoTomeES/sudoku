@@ -12,6 +12,20 @@ public class Grafo{
 		this.grafo=new HashMap<Integer,List<Integer>>();
 	}
 	
+	public Map<Integer, List<Integer>> getGrafo() {
+		/* {Precondición: }
+		 * {Postcondición: devuelve el mapa asociado al grafo}
+		 */
+		return this.grafo;
+	}
+
+	public void setGrafo(Map<Integer, List<Integer>> grafo) {
+		/* {Precondición: grafo es un parámetro de tipo Map<Integer, List<Integer>>}
+		 * {Postcondición: asigna al atributo grafo el parámetro grafo}
+		 */
+		this.grafo = grafo;
+	}
+
 	public boolean anadirVertice(Integer vertice) {
 		/* {Precondición: vértice es un parámetro de tipo Integer}
 		 * {Postcondición: comprueba si dicho parámetro está, si esta devuelve cierto y no lo añade.
@@ -62,18 +76,9 @@ public class Grafo{
 		List<Integer> dato1=(LinkedList<Integer>)this.grafo.get(vertice1);
 		List<Integer> dato2=(LinkedList<Integer>)this.grafo.get(vertice2);
 		boolean existe=(dato1.contains(vertice2))&&(dato2.contains(vertice1));
-		if(existe) {
-			/*
-			this.grafo.get(vertice1).remove(vertice2);
-			this.grafo.get(vertice2).remove(vertice1);
-			*/
-			
+		if(existe) {	
 			dato1.remove(vertice2);
 			dato2.remove(vertice1);
-			/*
-			this.grafo.put(vertice1,dato1);
-			this.grafo.put(vertice2,dato2);
-			*/
 		}
 		return existe;
 	}
@@ -124,7 +129,7 @@ public class Grafo{
 		while(it.hasNext()) {
 			Integer vertice = it.next();
 			List<Integer> asociados = this.listarVerticesAdyacentes(vertice);
-			copia.grafo.put(new Integer(vertice), asociados);
+			copia.grafo.put(vertice, asociados);
 		}
 		return copia;
 	}

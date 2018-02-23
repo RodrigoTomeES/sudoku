@@ -101,10 +101,10 @@ public class Sudoku {
 	
 	public boolean esCorrectoAnadirValorACasilla(int valor, int fila, int columna) {
 		boolean resultado=true;
-		for(int j=0;j<this.tamanoSudoku()-1&&resultado;j++) {
+		for(int j=0;j<this.tamanoSudoku()&&resultado;j++) {
 			resultado=resultado&&(this.sudokuInicial[fila-1][j].getNumero()!=valor);
 		}
-		for(int i=0;i<this.tamanoSudoku()-1&&resultado;i++) {
+		for(int i=0;i<this.tamanoSudoku()&&resultado;i++) {
 			resultado=resultado&&(this.sudokuInicial[i][columna-1].getNumero()!=valor);
 		}
 		

@@ -82,6 +82,14 @@ public class SudokuConSolucion extends Sudoku{
 		this.construirGrafoInicial();
 	}
 	
+	public GrafoConColores getGr() {
+		return gr;
+	}
+
+	public void setGr(GrafoConColores gr) {
+		this.gr = gr;
+	}
+
 	@Override
 	public void anadirNumeroInicial(int numero,int fila, int columna) {
 		/* {Precondición: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku. La variable número será de tipo entero entre [1,tamañoSudoku]}

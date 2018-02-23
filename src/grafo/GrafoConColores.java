@@ -41,7 +41,7 @@ public class GrafoConColores extends Grafo {
 		/* {Precondición: vertice es un parámetro de tipo Integer}
 		 * {Postcondición: devuelve el color asociado a dicho vertice}
 		 */
-		return (Integer)this.verticesColoreado.get(vertice);
+		return (Integer) this.verticesColoreado.get(vertice);
 	}
 	
 	public void borrarTodosLosColores() {
@@ -56,7 +56,7 @@ public class GrafoConColores extends Grafo {
 		 * {Postcondición: devuelve un Set<Integer> el cuál contiene todas las claves del mapa verticesColoreado,
 		 * ya que todos esos vértiecs tienen colores}
 		 */
-		return this.verticesColoreado.keySet();
+		return new LinkedHashSet<Integer>(this.verticesColoreado.keySet());
 	}
 	
 	public boolean esColorValido(Integer vertice,Integer color) {
@@ -169,12 +169,14 @@ public class GrafoConColores extends Grafo {
 
 	 @Override
 	 public GrafoConColores clone() {	 
-		 GrafoConColores resultado = (GrafoConColores) super.clone();
-		 Set<Integer> verticesConColores = new LinkedHashSet<>(this.listarVerticesConColores());
+		 GrafoConColores resultado = new GrafoConColores();
+		 resultado.setGrafo(super.clone().getGrafo());
+		 Set<Integer> verticesConColores = this.listarVerticesConColores();
 		 Iterator<Integer> it = verticesConColores.iterator();
 		 while(it.hasNext()) {
-			 Integer colorAsociado = this.verticesColoreado.get(it.next());
-			 resultado.anadirColorAVertice(new Integer(it.next()), colorAsociado); 
+			 Integer i = it.next();
+			 Integer colorAsociado = this.verticesColoreado.get(i);
+			 resultado.anadirColorAVertice(new Integer(i), colorAsociado); 
 		 }
 		 return resultado;
 	 }
