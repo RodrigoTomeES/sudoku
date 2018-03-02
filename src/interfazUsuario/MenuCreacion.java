@@ -75,6 +75,7 @@ public class MenuCreacion extends JFrame {
 
 		JLabel lblIntroduceElTamao = new JLabel("Introduce el tama\u00F1o del Sudoku(2,4,9), por favor.");
 		contentPane.add(lblIntroduceElTamao, BorderLayout.NORTH);
+		this.pack();
 	}
 
 }

@@ -1,11 +1,11 @@
 package interfazUsuario;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -33,11 +33,10 @@ public class InterfazGraficaSudoku extends JFrame {
 		sudoku = new JPanel();
 		botones = new JPanel();
 
-		FlowLayout fl_contentPane = new FlowLayout();
-		fl_contentPane.setVgap(0);
-		fl_contentPane.setHgap(0);
-		contentPane.setLayout(new GridLayout(2, 1, 0, 0));
-		//contentPane.setLayout(fl_contentPane);
+		//fl_contentPane.setVgap(0);
+		//fl_contentPane.setHgap(0);
+		//contentPane.setLayout(new GridLayout(2, 1, 0, 0));
+		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));
 		contentPane.add(sudoku);
 		contentPane.add(botones);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -49,10 +48,12 @@ public class InterfazGraficaSudoku extends JFrame {
 
 		for (int i = 0; i < tamanio * tamanio; i++) {
 			JTextField aux = new JTextField("");
+			aux.setAlignmentY(CENTER_ALIGNMENT);
+			aux.setMaximumSize(new Dimension(50,50));
 			casillas[i / tamanio][i % tamanio] = aux;
 			sudoku.add(aux);
 		}
-		botones.setLayout(new FlowLayout());
+		botones.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JButton button = new JButton("Resolver");
 		botones.add(button);
@@ -80,6 +81,7 @@ public class InterfazGraficaSudoku extends JFrame {
 				}
 			}
 		});
+		this.pack();
 	}
 
 }
