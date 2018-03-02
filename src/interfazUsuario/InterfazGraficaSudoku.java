@@ -1,6 +1,7 @@
 package interfazUsuario;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -32,7 +33,11 @@ public class InterfazGraficaSudoku extends JFrame {
 		sudoku = new JPanel();
 		botones = new JPanel();
 
+		FlowLayout fl_contentPane = new FlowLayout();
+		fl_contentPane.setVgap(0);
+		fl_contentPane.setHgap(0);
 		contentPane.setLayout(new GridLayout(2, 1, 0, 0));
+		//contentPane.setLayout(fl_contentPane);
 		contentPane.add(sudoku);
 		contentPane.add(botones);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -47,7 +52,7 @@ public class InterfazGraficaSudoku extends JFrame {
 			casillas[i / tamanio][i % tamanio] = aux;
 			sudoku.add(aux);
 		}
-		botones.setLayout(new BorderLayout(0, 0));
+		botones.setLayout(new FlowLayout());
 
 		JButton button = new JButton("Resolver");
 		botones.add(button);
@@ -62,7 +67,7 @@ public class InterfazGraficaSudoku extends JFrame {
 							int dato = Integer.parseInt(casillas[i][j].getText());
 							sudokuConSolucion.anadirNumeroInicial(dato, i + 1, j + 1);
 						} catch (NumberFormatException e) {
-							System.out.println("No es un entero el dato de esa posición.");
+							//System.out.println("No es un entero el dato de esa posición.");
 						}
 					}
 				}

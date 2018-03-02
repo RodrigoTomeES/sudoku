@@ -97,7 +97,7 @@ public class SudokuConSolucion extends Sudoku{
 		 * Dicho objeto se construye con el parámetro número y true}
 		 */
 		super.anadirNumeroInicial(numero, fila, columna);
-		this.gr.anadirColorAVertice(fila*super.tamanoSudoku()+columna+1, numero);
+		this.gr.anadirColorAVertice((fila-1)*super.tamanoSudoku()+columna, numero);
 	}
 	
 	@Override
@@ -107,7 +107,7 @@ public class SudokuConSolucion extends Sudoku{
 		 * Dicho objeto se construye con el parámetro número y false}
 		 */
 		super.anadirNumero(numero, fila, columna);
-		this.gr.anadirColorAVertice(fila*super.tamanoSudoku()+columna+1, numero);
+		this.gr.anadirColorAVertice((fila-1)*super.tamanoSudoku()+columna, numero);
 	}
 	
 	@Override
@@ -117,7 +117,7 @@ public class SudokuConSolucion extends Sudoku{
 		 * y por último elemina dicho vértice}
 		 */
 		super.eliminarNumeroACasilla(fila, columna);
-		this.gr.eliminarColorVertice(fila*super.tamanoSudoku()+columna+1);
+		this.gr.eliminarColorVertice((fila-1)*super.tamanoSudoku()+columna);
 	}
 	
 	public boolean sePuedeResolverSudoku (){
