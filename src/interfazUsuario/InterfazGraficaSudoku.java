@@ -1,6 +1,6 @@
 package interfazUsuario;
 
-import java.awt.Dimension;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import sudoku.SudokuConSolucion;
-import java.awt.BorderLayout;
 
 public class InterfazGraficaSudoku extends JFrame {
 
@@ -22,7 +21,7 @@ public class InterfazGraficaSudoku extends JFrame {
 
 	// int tamanio2;
 	public InterfazGraficaSudoku(int tamanio) {
-		// tamanio = 5;
+		//tamanio = 5;
 		// tamanio2 = tam
 
 		setTitle("Sudoku");

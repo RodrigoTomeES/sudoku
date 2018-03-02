@@ -37,9 +37,9 @@ public class MenuCreacion extends JFrame {
 		setResizable(false);
 		setTitle("Men\u00FA de creaci\u00F3n");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//Doy tamaño a la venta
+		// Doy tamaño a la venta
 		setBounds(100, 100, 350, 250);
-		//Centro el contenido en la pantalla
+		// Centro el contenido en la pantalla
 		setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
