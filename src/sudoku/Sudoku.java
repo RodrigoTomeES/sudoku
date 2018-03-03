@@ -100,18 +100,24 @@ public class Sudoku {
 	public boolean esCorrectoAnadirValorACasilla(int valor, int fila, int columna) {
 		boolean resultado=true;
 		for(int j=0;j<this.tamanoSudoku()&&resultado;j++) {
-			resultado=resultado&&(this.sudokuInicial[fila-1][j].getNumero()!=valor);
+			if(j!=columna-1) {
+				resultado=resultado&&(this.sudokuInicial[fila-1][j].getNumero()!=valor);
+			}
 		}
 		for(int i=0;i<this.tamanoSudoku()&&resultado;i++) {
-			resultado=resultado&&(this.sudokuInicial[i][columna-1].getNumero()!=valor);
+			if(i!=fila-1) {
+				resultado=resultado&&(this.sudokuInicial[i][columna-1].getNumero()!=valor);
+			}
 		}
 		
 		int tamano = (int) Math.sqrt(this.tamanoSudoku());
-		int esquinaSuperiorCuadranteFila = (fila/tamano)*tamano;
-		int esquinaSuperiorCuadranteColumna = (columna/tamano)*tamano;
+		int esquinaSuperiorCuadranteFila = ((fila-1)/tamano)*tamano;
+		int esquinaSuperiorCuadranteColumna = ((columna-1)/tamano)*tamano;
 		for(int i=0;i<tamano&&resultado;i++) {
 			for(int j=0;j<tamano&&resultado;j++) {
-				resultado=resultado&&(this.sudokuInicial[esquinaSuperiorCuadranteFila+i][esquinaSuperiorCuadranteColumna+j].getNumero()!=valor);
+				if(esquinaSuperiorCuadranteFila+i!=fila-1||esquinaSuperiorCuadranteColumna+j!=columna-1) {
+					resultado=resultado&&(this.sudokuInicial[esquinaSuperiorCuadranteFila+i][esquinaSuperiorCuadranteColumna+j].getNumero()!=valor);
+				}
 			}
 		}
 		

@@ -93,8 +93,7 @@ public class SudokuConSolucion extends Sudoku{
 	@Override
 	public void anadirNumeroInicial(int numero,int fila, int columna) {
 		/* {Precondición: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku. La variable número será de tipo entero entre [1,tamañoSudoku]}
-		 * {Postcondición: añade un objeto de tipo Entero_historial en la posición que indica la intersección de la fila y la columna.
-		 * Dicho objeto se construye con el parámetro número y true}
+		 * {Postcondición: llama al método anadirNumeroInicial de la superclase y añade sú valor como color al grafo}
 		 */
 		super.anadirNumeroInicial(numero, fila, columna);
 		this.gr.anadirColorAVertice((fila-1)*super.tamanoSudoku()+columna, numero);
@@ -103,8 +102,7 @@ public class SudokuConSolucion extends Sudoku{
 	@Override
 	public void anadirNumero(int numero,int fila, int columna) {
 		/* {Precondición: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku. La variable número será de tipo entero entre [1,tamañoSudoku]}
-		 * {Postcondición: añade un objeto de tipo Entero_historial en la posición que indica la intersección de la fila y la columna.
-		 * Dicho objeto se construye con el parámetro número y false}
+		 * {Postcondición: llama al método anadirNumeroInicial de la superclase y añade sú valor como color al grafo}
 		 */
 		super.anadirNumero(numero, fila, columna);
 		this.gr.anadirColorAVertice((fila-1)*super.tamanoSudoku()+columna, numero);
@@ -113,8 +111,7 @@ public class SudokuConSolucion extends Sudoku{
 	@Override
 	public void eliminarNumeroACasilla(int fila, int columna) {
 		/* {Precondición: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku}
-		 * {Postcondición: eliminan de la superclase el valor, luego elimina el color asociado a ese vértice del grafo
-		 * y por último elemina dicho vértice}
+		 * {Postcondición: eliminan de la superclase el valor, luego elimina el color asociado a ese vértice del grafo}
 		 */
 		super.eliminarNumeroACasilla(fila, columna);
 		this.gr.eliminarColorVertice((fila-1)*super.tamanoSudoku()+columna);

@@ -3,6 +3,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.TreeMap;
+
 import org.junit.Test;
 
 import sudoku.SudokuConSolucion;
@@ -49,58 +51,66 @@ public class Tests_SudokuConSolucion {
 	
 	@Test
 	public void testSePuedeResolverSudoku() {
-		SudokuConSolucion prueba = new SudokuConSolucion(9);
-		prueba.anadirNumero(1, 1, 1);
-		prueba.anadirNumero(1, 2, 2);
-		assertFalse(prueba.sePuedeResolverSudoku());
+		SudokuConSolucion prueba1 = new SudokuConSolucion(9);
+		prueba1.anadirNumero(1, 1, 1);
+		prueba1.anadirNumero(1, 2, 2);
+		assertFalse(prueba1.sePuedeResolverSudoku());
+		SudokuConSolucion prueba2 = new SudokuConSolucion(9);
+		prueba2.anadirNumero(1, 1, 1);
+		assertTrue(prueba2.sePuedeResolverSudoku());
 	}
 	
 	@Test
 	public void testResolverSudoku() {
-		SudokuConSolucion prueba = new SudokuConSolucion(9);
-		prueba.anadirNumero(1, 1, 1);
-		prueba.anadirNumero(1, 2, 2);
-
-		boolean resultado=true;
+		SudokuConSolucion prueba1 = new SudokuConSolucion(9);
+		prueba1.anadirNumeroInicial(1, 1, 1);
+		prueba1.anadirNumeroInicial(1, 2, 2);
+		prueba1.resolverSudoku();
+		assertFalse(compruebaSiSudokuBienResuelto(prueba1));
 		
-		for(int n = 0; n < prueba.tamanoSudoku(); n++) {
+		SudokuConSolucion prueba2 = new SudokuConSolucion(9);
+		prueba2.anadirNumeroInicial(1, 1, 1);
+		prueba2.resolverSudoku();
+		assertTrue(compruebaSiSudokuBienResuelto(prueba2));
+		
+		
+	}
+	
+	public boolean compruebaSiSudokuBienResuelto(SudokuConSolucion sudokuAResolver) {
+		boolean resultado=true;
+		int tamano = sudokuAResolver.tamanoSudoku();
+		int sumaRangoValores = 45;
+		
+		int sumaAux;
+		for(int n = 0; n < tamano && resultado; n++) {
 			int fila = n;
 			int columna = n;
-			int valor = prueba.getSudokuInicial()[n][n].getNumero();
-			
-			for(int j = 0; j < prueba.tamanoSudoku() && resultado; j++) {
-				resultado = prueba.getSudokuInicial()[fila][j].getNumero() != valor;
+			sumaAux = 0;
+			for(int j = 0; j < tamano; j++) {
+				sumaAux=sumaAux+sudokuAResolver.getSudokuInicial()[fila][j].getNumero();
 			}
-			
-			for(int i = 0; i < prueba.tamanoSudoku() && resultado; i++) {
-				resultado = prueba.getSudokuInicial()[i][columna].getNumero() != valor;
+			resultado = (sumaAux==sumaRangoValores);
+			sumaAux = 0;
+			for(int i = 0; i < tamano && resultado; i++) {
+				sumaAux=sumaAux+sudokuAResolver.getSudokuInicial()[i][columna].getNumero(); 
 			}
+			resultado = (sumaAux==sumaRangoValores);
 		}
 		
-		int secciones = (int) Math.sqrt(prueba.tamanoSudoku());
-		
-		int k = 0;
-		int n = 0;
-		while(k < secciones) {
-			int columna = n;
-			while(n < secciones) {
-				int fila = k;
-				int valor = prueba.getSudokuInicial()[n][n].getNumero();
-				int tamano = (int) Math.sqrt(prueba.tamanoSudoku());
-				int esquinaSuperiorCuadranteFila = (fila+1/tamano)*tamano;
-				int esquinaSuperiorCuadranteColumna = (columna+1/tamano)*tamano;
-				
-				for(int i = 0; i < tamano && resultado; i++) {
-					for(int j = 0; j < tamano && resultado; j++) {
-						resultado = prueba.getSudokuInicial()[esquinaSuperiorCuadranteFila+i][esquinaSuperiorCuadranteColumna+j].getNumero() != valor;
+		int secciones = (int) Math.sqrt(tamano);
+		for(int i = 1; i < tamano && resultado;i=i+secciones ) {
+			for(int j = 1; j < tamano && resultado;j=j+secciones) {
+				int esquinaSuperiorCuadranteFila = (i/tamano)*tamano;
+				int esquinaSuperiorCuadranteColumna = (j/tamano)*tamano;
+				sumaAux=0;
+				for(int n=0;n<secciones;n++) {
+					for(int k=0;k<secciones;k++) {
+						sumaAux=sumaAux+sudokuAResolver.getSudokuInicial()[esquinaSuperiorCuadranteFila+n][esquinaSuperiorCuadranteColumna+k].getNumero();
 					}
 				}
-				n++;
+				resultado = (sumaAux==sumaRangoValores);
 			}
-			k++;
-			n = 0;
-			columna += secciones;
 		}
-		assertFalse(resultado);
+		return resultado;
 	}
 }

@@ -118,6 +118,11 @@ public class Tests_Sudoku {
 
 		prueba.anadirNumeroInicial(1, 1, 1);
 		assertFalse(prueba.esCorrectoAnadirValorACasilla(1, 2, 2));
-		
+		assertTrue(prueba.esCorrectoAnadirValorACasilla(2, 2, 2));
+		prueba.anadirNumeroInicial(2, 2, 2);
+		assertFalse(prueba.esCorrectoAnadirValorACasilla(2, 3, 3));
+		assertFalse(prueba.esCorrectoAnadirValorACasilla(2, 3, 2));
+		assertFalse(prueba.esCorrectoAnadirValorACasilla(1, 3, 3));
+		assertTrue(prueba.esCorrectoAnadirValorACasilla(3, 3, 3));
 	}
 }
