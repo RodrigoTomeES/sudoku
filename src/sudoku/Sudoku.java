@@ -8,8 +8,6 @@ public class Sudoku {
 		 * {Postcondición: construye una matriz con tamaño como número de filas y de columnas}
 		 */
 		
-		//Preguntar otra opcion
-		
 		this.sudokuInicial=new Entero_historial [tamano][tamano];
 		for(int i = 0; i < tamano; i++) {
 			for(int j = 0; j < tamano; j++) {
@@ -33,7 +31,7 @@ public class Sudoku {
 	}
 	
 	public void anadirNumeroInicial(int numero,int fila, int columna) {
-		/* {Precondicón: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku. La variable número será de tipo entero entre [1,tamañoSudoku]}
+		/* {Precondicón: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku. La variable numero será de tipo entero entre [1,tamañoSudoku]}
 		 * {Postcondición: añade un objeto de tipo Entero_historial en la posición que indica la intersección de la fila y la columna.
 		 * Dicho objeto se construye con el parámetro número y true}
 		 */
@@ -41,7 +39,7 @@ public class Sudoku {
 	}
 	
 	public void anadirNumero(int numero,int fila, int columna) {
-		/* {Precondición: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku. La variable número será de tipo entero entre [1,tamañoSudoku]}
+		/* {Precondición: la variable fila y columna tienen que ser números de tipo entero entre 1 y tamañoSudoku. La variable numero será de tipo entero entre [1,tamañoSudoku]}
 		 * {Postcondición: añade un objeto de tipo Entero_historial en la posición que indica la intersección de la fila y la columna.
 		 * Dicho objeto se construye con el parámetro número y false}
 		 */
@@ -50,7 +48,7 @@ public class Sudoku {
 	
 	public Entero_historial obtenerValorDeCasilla(int fila, int columna) {
 		/* {Precondición: fila y columna son dos parámetros de tipo entero cuyo valor va desde 1 hasta tamañoSudoku}
-		 * {Postcondición: devuelve el valor de la casilla que se obtiene como intersección de los parámetros fila y columna}
+		 * {Postcondición: devuelve el Entero_historial de la casilla que se obtiene como intersección de los parámetros fila y columna}
 		 */ 
 		return this.sudokuInicial[fila-1][columna-1];
 	}
@@ -87,7 +85,7 @@ public class Sudoku {
 	
 	public void volverAlEstadoInicial() {
 		/* {Precondición: }
-		 * {Postcondición: recorre la matriz y va asignando nulls a aquellas posiciones que al llamar a la función que indica si
+		 * {Postcondición: recorre la matriz y va asignando Entero_historial creados con el constructor vacío a aquellas posiciones que al llamar a la función que indica si
 		 * es un estado inicial devuelve falso}
 		 */
 		for(int i=0;i<this.tamanoSudoku();i++) {
@@ -107,8 +105,6 @@ public class Sudoku {
 		for(int i=0;i<this.tamanoSudoku()&&resultado;i++) {
 			resultado=resultado&&(this.sudokuInicial[i][columna-1].getNumero()!=valor);
 		}
-		
-		//Preguntar
 		
 		int tamano = (int) Math.sqrt(this.tamanoSudoku());
 		int esquinaSuperiorCuadranteFila = (fila/tamano)*tamano;

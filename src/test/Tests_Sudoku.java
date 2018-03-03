@@ -94,7 +94,17 @@ public class Tests_Sudoku {
 		assertEquals(prueba.getSudokuInicial()[1][1].getNumero(),1);
 		assertTrue(prueba.getSudokuInicial()[1][1].getEstadoInicial());
 		
+		assertEquals(prueba.getSudokuInicial()[0][1].getNumero(),1);
+		assertFalse(prueba.getSudokuInicial()[0][1].getEstadoInicial());
+		assertEquals(prueba.getSudokuInicial()[1][0].getNumero(),1);
+		assertFalse(prueba.getSudokuInicial()[1][0].getEstadoInicial());
+		
 		prueba.volverAlEstadoInicial();
+		
+		assertEquals(prueba.getSudokuInicial()[0][0].getNumero(),1);
+		assertTrue(prueba.getSudokuInicial()[0][0].getEstadoInicial());
+		assertEquals(prueba.getSudokuInicial()[1][1].getNumero(),1);
+		assertTrue(prueba.getSudokuInicial()[1][1].getEstadoInicial());
 		
 		assertEquals(prueba.getSudokuInicial()[0][1].getNumero(),-1);
 		assertFalse(prueba.getSudokuInicial()[0][1].getEstadoInicial());
