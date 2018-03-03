@@ -15,6 +15,9 @@ public class Tests_Entero_historial {
 		Entero_historial prueba2 = new Entero_historial(85,true);
 		assertEquals(prueba2.getNumero(),85);
 		assertTrue(prueba2.getEstadoInicial());
+		Entero_historial prueba3 = new Entero_historial();
+		assertEquals(prueba3.getNumero(),-1);
+		assertFalse(prueba3.getEstadoInicial());
 	}
 
 	@Test

@@ -13,7 +13,7 @@ public class Entero_historial {
 	}
 	
 	public Entero_historial(int numero,boolean estadoInicial) {
-		/*{Precondición: numero es una variable de tipo entero, estadoInicial es una variable de topo booleano}
+		/*{Precondición: numero es una variable de tipo entero, estadoInicial es una variable de tipo booleano}
 		 * {Postcondición: asigna al atributo numero del objeto el parámetro numero, asigna al atributo estadoInicial del objeto el parámetro estadoInicial
 		 * Por lo que el objeto queda construido}
 		 */

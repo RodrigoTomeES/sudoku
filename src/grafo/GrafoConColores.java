@@ -16,21 +16,21 @@ public class GrafoConColores extends Grafo {
 	
 	public boolean anadirColorAVertice(Integer vertice, Integer color) {
 		/* {Precondición: vertice y color son dos parámetros de tipo Integer.}
-		 * {Postcondición: comprueba en la lista de claves si está el parámetro vértice. Si no está, añade dicho vertice y su color y devuelve falso.
-		 * En caso contrario devuelve cierto y no lo añade}
+		 * {Postcondición: comprueba en la lista de claves si está el parámetro vértice. Si no está, añade dicho vertice y su color y devuelve cierto.
+		 * En caso contrario devuelve falso y no lo añade}
 		 */
-		boolean esta=this.verticesColoreado.get(vertice)!=null;
+		boolean esta=(this.verticesColoreado.containsKey(vertice));
 		if(!esta) {
 			this.verticesColoreado.put(vertice, color);
 		}
-		return esta;
+		return !esta;
 	}
 	
 	public boolean eliminarColorVertice(Integer vertice) {
 		/* {Precondición: vertice es un parámetro de tipo Integer}
 		 * {Postcondición: si se encontraba dicho vértice devuelve cierto y lo elimina. En caso contrario sólo devuelve falso.}
 		 */
-		boolean esta=this.verticesColoreado.get(vertice)!=null;
+		boolean esta=(this.verticesColoreado.containsKey(vertice));
 		if(esta) {
 			this.verticesColoreado.remove(vertice);
 		}
@@ -66,8 +66,6 @@ public class GrafoConColores extends Grafo {
 		List<Integer> verticesAdyacentes=super.listarVerticesAdyacentes(vertice);
 		boolean colorValido=true;
 		
-		//PREGUNTAR
-		
 		Iterator<Integer> it = verticesAdyacentes.iterator();
 		
 		while(it.hasNext()&&colorValido) {
@@ -78,9 +76,6 @@ public class GrafoConColores extends Grafo {
 	}
 	
 	public boolean colorear(int numColores){
-		/* {Precondición: }
-		 * {Postcondición: }
-		 */
 	    List<Integer> listaVertices;
 	    // lista auxiliar en la que colocaré todos los vértices
 

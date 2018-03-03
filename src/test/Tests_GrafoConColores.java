@@ -1,7 +1,10 @@
 package test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.junit.Test;
@@ -77,6 +80,7 @@ public class Tests_GrafoConColores {
 		assertEquals(prueba.getColorVertice(1),null);
 		assertEquals(prueba.getColorVertice(2),null);
 		assertEquals(prueba.getColorVertice(3),null);
+		assertEquals(prueba.listarVerticesConColores(),new LinkedHashSet<Integer>());
 	}
 	
 	@Test
