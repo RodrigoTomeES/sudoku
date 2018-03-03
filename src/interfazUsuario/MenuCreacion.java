@@ -36,7 +36,7 @@ public class MenuCreacion extends JFrame {
 	public MenuCreacion() {
 		setResizable(false);
 		setTitle("Men\u00FA de creaci\u00F3n");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		// Doy tamaño a la venta
 		setBounds(100, 100, 350, 250);
 		// Centro el contenido en la pantalla
@@ -61,6 +61,7 @@ public class MenuCreacion extends JFrame {
 					if (tamanio == 2 || tamanio == 4 || tamanio == 9) {
 						InterfazGraficaSudoku interfazGraficaSudoku = new InterfazGraficaSudoku(tamanio);
 						interfazGraficaSudoku.setVisible(true);
+						dispose();
 						// PREGUNTAR COMO CERRAR VENTANA
 					}
 				} catch (NumberFormatException e) {
@@ -75,7 +76,7 @@ public class MenuCreacion extends JFrame {
 
 		JLabel lblIntroduceElTamao = new JLabel("Introduce el tama\u00F1o del Sudoku(2,4,9), por favor.");
 		contentPane.add(lblIntroduceElTamao, BorderLayout.NORTH);
-		this.pack();
+		pack();
 	}
 
 }
