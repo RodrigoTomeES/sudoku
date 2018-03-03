@@ -168,7 +168,10 @@ public class GrafoConColores extends Grafo {
 	  }
 
 	 @Override
-	 public GrafoConColores clone() {	 
+	 public GrafoConColores clone() {
+		 /* {Precondición: }
+		  * {Postcondición: devuelve una copia del GrafoConColores}
+		  */
 		 GrafoConColores resultado = new GrafoConColores();
 		 resultado.setGrafo(super.clone().getGrafo());
 		 Set<Integer> verticesConColores = this.listarVerticesConColores();

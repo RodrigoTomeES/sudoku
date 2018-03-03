@@ -28,8 +28,10 @@ public class Tests_Grafo {
 		assertEquals(prueba.listarVertices().contains(5),true);
 		prueba.anadirVertice(3);
 		assertEquals(prueba.estaVertice(3),true);
-		prueba.anadirVertice(3);
-		assertEquals(prueba.estaVertice(3),true);
+		assertEquals(prueba.listarVertices().contains(3),true);
+		prueba.anadirVertice(8);
+		assertEquals(prueba.estaVertice(8),true);
+		assertEquals(prueba.listarVertices().contains(8),true);
 	}
 	
 	@Test
@@ -41,6 +43,7 @@ public class Tests_Grafo {
 		assertEquals(prueba.listarVertices().contains(5),true);
 		prueba.eliminarVertice(5);
 		prueba.eliminarVertice(3);
+		assertEquals(prueba.estaVertice(5),false);
 		assertEquals(prueba.estaVertice(3),false);
 		
 		prueba.anadirVertice(1);

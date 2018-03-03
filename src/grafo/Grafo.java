@@ -28,14 +28,14 @@ public class Grafo{
 
 	public boolean anadirVertice(Integer vertice) {
 		/* {Precondición: vértice es un parámetro de tipo Integer}
-		 * {Postcondición: comprueba si dicho parámetro está, si esta devuelve cierto y no lo añade.
-		 * En caso contrario lo añade y devuelve falso}
+		 * {Postcondición: comprueba si dicho parámetro está, si esta devuelve falso y no lo añade.
+		 * En caso contrario lo añade y devuelve cierto}
 		 */
 		boolean esta=(this.grafo.get(vertice)!=null);
 		if(!esta) {
 			this.grafo.put(vertice,new LinkedList<Integer>());
 		}
-		return esta;
+		return !esta;
 	}
 
 	public boolean eliminarVertice(Integer vertice) {
@@ -57,21 +57,21 @@ public class Grafo{
 	
 	public boolean anadirArista(Integer vertice1,Integer vertice2) {
 		/* {Precondición: vertice1 y vertice2 son dos parámetros de tipo Integer y deben existir}
-		 * {Postcondición: al vertice1 le pone como vértice asociado el 2. Al vertice2 le asocia el 1}
+		 * {Postcondición: al vertice1 le pone como vértice asociado el 2. Al vertice2 le asocia el 1. Si la arista ya existía devuelve falso, si no cierto}
 		 */
 		List<Integer> dato1=(LinkedList<Integer>)this.grafo.get(vertice1);
 		List<Integer> dato2=(LinkedList<Integer>)this.grafo.get(vertice2);
 		boolean existe=(dato1.contains(vertice2))&&(dato2.contains(vertice1));
 		if(!existe) {
-			this.grafo.get(vertice1).add(vertice2);
-			this.grafo.get(vertice2).add(vertice1);
+			dato1.add(vertice2);
+			dato2.add(vertice1);
 		}
 		return !existe;
 	}
 	
 	public boolean eliminarArista(Integer vertice1,Integer vertice2) {
 		/* {Precondición: vertice1 y vertice2 son dos parámetros de tipo Integer}
-		 * {Postcondición: al vertice1 le elimina como vértice asociado el 2. Al vertice2 le elimina el 1}
+		 * {Postcondición: al vertice1 le elimina como vértice asociado el 2. Al vertice2 le elimina el 1. Devuelve cierto si la ha podido eliminar}
 		 */
 		List<Integer> dato1=(LinkedList<Integer>)this.grafo.get(vertice1);
 		List<Integer> dato2=(LinkedList<Integer>)this.grafo.get(vertice2);
@@ -123,6 +123,9 @@ public class Grafo{
 	
 	@Override
 	public Grafo clone() {
+		/* {Precondición: }
+		 * {Postcondición: devuelve una copia del grafo}
+		 */
 		Grafo copia = new Grafo();
 		Set<Integer> auxCopia = this.listarVertices();
 		Iterator<Integer> it = auxCopia.iterator();
