@@ -23,7 +23,7 @@ public class InterfazGraficaSudoku extends JFrame {
 	private JPanel sudoku;
 	private JPanel botones;
 
-	 int tamanio2;
+//	 int tamanio2;
 	public InterfazGraficaSudoku(int tamanio) {
 		//tamanio = 5;
 		// tamanio2 = tam
@@ -79,19 +79,30 @@ public class InterfazGraficaSudoku extends JFrame {
 				lecturaDeDatosDeLosCuadrosDeTexto:
 				for (int i = 0; i < tamanio; i++) {
 					for (int j = 0; j < tamanio; j++) {
-						try {
-							int dato = Integer.parseInt(casillas[i][j].getText());
-							sudokuConSolucion.anadirNumeroInicial(dato, i + 1, j + 1);
-						} catch (NumberFormatException e) {
-							JOptionPane.showMessageDialog(null, "Sólo se permite introducir números en los campos de texto.","Error", JOptionPane.ERROR_MESSAGE);
-							bienConstruido=false;
-							for (int n = 0; n < tamanio; n++) {
-								for (int k = 0; k < tamanio; k++) {
-									casillas[n][k].setText("");
-								}
-							}
-							break lecturaDeDatosDeLosCuadrosDeTexto;
+						if(casillas[i][j].getText().equals("")) {
+							
 						}
+						else {
+							try {
+								int dato = Integer.parseInt(casillas[i][j].getText());
+								if(dato>=1&&dato<=tamanio) {
+									sudokuConSolucion.anadirNumeroInicial(dato, i + 1, j + 1);
+								}
+								else {
+									JOptionPane.showMessageDialog(null, "Sólo se permite introducir números entre 1 y tamaño.","Error", JOptionPane.ERROR_MESSAGE);
+									bienConstruido=false;
+									casillas[i][j].setText("");
+									break lecturaDeDatosDeLosCuadrosDeTexto;
+								}
+								
+							} catch (NumberFormatException e) {
+								JOptionPane.showMessageDialog(null, "Sólo se permite introducir números en los campos de texto.","Error", JOptionPane.ERROR_MESSAGE);
+								bienConstruido=false;
+								casillas[i][j].setText("");
+								break lecturaDeDatosDeLosCuadrosDeTexto;
+							}
+						}
+						
 					}
 				}
 				if(bienConstruido) {
@@ -133,11 +144,8 @@ public class InterfazGraficaSudoku extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				for (int i = 0; i < tamanio; i++) {
 					for (int j = 0; j < tamanio; j++) {
-						try {
-							casillas[i][j].setText("");;
-						} catch (NumberFormatException e) {
-							//System.out.println("No es un entero el dato de esa posición.");
-						}
+						casillas[i][j].setText("");
+
 					}
 				}
 			}
