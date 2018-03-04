@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import sudoku.SudokuConSolucion;
@@ -40,34 +41,36 @@ public class InterfazGraficaSudoku extends JFrame {
 		contentPane.setLayout(new GridBagLayout());
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		GridBagConstraints c = new GridBagConstraints();
+		GridBagConstraints c1 = new GridBagConstraints();
+		c1.weightx=1d;
+		c1.weighty=1d;
 		sudoku.setLayout(new GridLayout(tamanio, tamanio));
-		c.ipady=100;
-		c.ipadx=300;
-		c.gridy=0;
-		c.fill=GridBagConstraints.BOTH;
-		contentPane.add(sudoku,c);
+		c1.ipady=100;
+		c1.ipadx=250;
+		c1.gridy=0;
+		c1.fill=GridBagConstraints.BOTH;
+		contentPane.add(sudoku,c1);
 		
 		JTextField casillas[][] = new JTextField[tamanio][tamanio];
 
 		for (int i = 0; i < tamanio * tamanio; i++) {
 			JTextField aux = new JTextField("");
-			aux.setAlignmentY(CENTER_ALIGNMENT);
+			aux.setHorizontalAlignment(SwingConstants.CENTER);
 			aux.setMaximumSize(new Dimension(50,50));
 			casillas[i / tamanio][i % tamanio] = aux;
 			sudoku.add(aux);
 		}
-		botones.setLayout(new GridLayout(1, 1, 0, 0));
+		botones.setLayout(new GridLayout(1,2));
+		JButton resolver = new JButton("Resolver");
+		c1.ipadx=0;
+		c1.ipady=0;
+		c1.gridy=1;
+		c1.weightx=1d;
+		c1.weighty=0d;
+		c1.fill=GridBagConstraints.HORIZONTAL;
+		contentPane.add(botones,c1);
 
-		JButton button = new JButton("Resolver");
-		botones.add(button);
-		c.ipadx=0;
-		c.ipady=0;
-		c.gridy=1;
-		c.fill=GridBagConstraints.HORIZONTAL;
-		contentPane.add(botones,c);
-
-		button.addMouseListener(new MouseAdapter() {
+		resolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				SudokuConSolucion sudokuConSolucion = new SudokuConSolucion(tamanio);
@@ -90,7 +93,19 @@ public class InterfazGraficaSudoku extends JFrame {
 				}
 			}
 		});
+		JButton crearNuevo = new JButton("Crear nuevo sudoku");
+		crearNuevo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				MenuCreacion menuCreacion = new MenuCreacion();
+				menuCreacion.setVisible(true);
+				dispose();
+			}
+		});
+		botones.add(crearNuevo);
+		botones.add(resolver);
 		add(contentPane);
+		//setResizable(false);
 		pack();
 	}
 
