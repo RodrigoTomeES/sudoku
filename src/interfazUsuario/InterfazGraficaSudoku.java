@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -85,10 +86,18 @@ public class InterfazGraficaSudoku extends JFrame {
 					}
 				}
 				sudokuConSolucion.resolverSudoku();
+				recorridoDeLaSolucion: //Necesario para poder salir del bucle si es que estaba mal resuelto.
 				for (int i = 1; i <= tamanio; i++) {
 					for (int j = 1; j <= tamanio; j++) {
-						casillas[i - 1][j - 1]
-								.setText(Integer.toString(sudokuConSolucion.obtenerValorDeCasilla(i, j).getNumero()));
+						int numeroResultado=sudokuConSolucion.obtenerValorDeCasilla(i, j).getNumero();
+						if(numeroResultado!=-1) {
+							casillas[i - 1][j - 1].setText(Integer.toString(numeroResultado));
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "No se podía resolver el sudoku.","Error", JOptionPane.ERROR_MESSAGE);
+							break recorridoDeLaSolucion;
+						}
+						
 					}
 				}
 			}

@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -65,9 +66,11 @@ public class MenuCreacion extends JFrame {
 						dispose();
 						// PREGUNTAR COMO CERRAR VENTANA
 					}
+					else {
+						JOptionPane.showMessageDialog(null, "No se ha introducido un tamaño correcto. Introduce uno correcto, por favor.","Error", JOptionPane.ERROR_MESSAGE);
+					}
 				} catch (NumberFormatException e) {
-					System.out.println(
-							"No se ha podido crear la interfaz gráfica, ya que el dato introducido no es un entero.");
+					JOptionPane.showMessageDialog(null, "No se ha podido crear la interfaz gráfica, ya que el dato introducido no es un entero.","Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
