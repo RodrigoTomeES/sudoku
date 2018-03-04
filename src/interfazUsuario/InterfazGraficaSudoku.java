@@ -75,29 +75,45 @@ public class InterfazGraficaSudoku extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				SudokuConSolucion sudokuConSolucion = new SudokuConSolucion(tamanio);
+				boolean bienConstruido=true;
+				lecturaDeDatosDeLosCuadrosDeTexto:
 				for (int i = 0; i < tamanio; i++) {
 					for (int j = 0; j < tamanio; j++) {
 						try {
 							int dato = Integer.parseInt(casillas[i][j].getText());
 							sudokuConSolucion.anadirNumeroInicial(dato, i + 1, j + 1);
 						} catch (NumberFormatException e) {
-							//System.out.println("No es un entero el dato de esa posición.");
+							JOptionPane.showMessageDialog(null, "Sólo se permite introducir números en los campos de texto.","Error", JOptionPane.ERROR_MESSAGE);
+							bienConstruido=false;
+							for (int n = 0; n < tamanio; n++) {
+								for (int k = 0; k < tamanio; k++) {
+									casillas[n][k].setText("");
+								}
+							}
+							break lecturaDeDatosDeLosCuadrosDeTexto;
 						}
 					}
 				}
-				sudokuConSolucion.resolverSudoku();
-				recorridoDeLaSolucion: //Necesario para poder salir del bucle si es que estaba mal resuelto.
-				for (int i = 1; i <= tamanio; i++) {
-					for (int j = 1; j <= tamanio; j++) {
-						int numeroResultado=sudokuConSolucion.obtenerValorDeCasilla(i, j).getNumero();
-						if(numeroResultado!=-1) {
-							casillas[i - 1][j - 1].setText(Integer.toString(numeroResultado));
+				if(bienConstruido) {
+					sudokuConSolucion.resolverSudoku();
+					recorridoDeLaSolucion: //Necesario para poder salir del bucle si es que estaba mal resuelto.
+					for (int i = 1; i <= tamanio; i++) {
+						for (int j = 1; j <= tamanio; j++) {
+							int numeroResultado=sudokuConSolucion.obtenerValorDeCasilla(i, j).getNumero();
+							if(numeroResultado!=-1) {
+								casillas[i - 1][j - 1].setText(Integer.toString(numeroResultado));
+							}
+							else {
+								JOptionPane.showMessageDialog(null, "No se podía resolver el sudoku.","Error", JOptionPane.ERROR_MESSAGE);
+								for (int n = 0; n < tamanio; n++) {
+									for (int k = 0; k < tamanio; k++) {
+										casillas[n][k].setText("");
+									}
+								}
+								break recorridoDeLaSolucion;
+							}
+							
 						}
-						else {
-							JOptionPane.showMessageDialog(null, "No se podía resolver el sudoku.","Error", JOptionPane.ERROR_MESSAGE);
-							break recorridoDeLaSolucion;
-						}
-						
 					}
 				}
 			}
