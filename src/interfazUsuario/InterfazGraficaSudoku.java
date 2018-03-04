@@ -45,7 +45,7 @@ public class InterfazGraficaSudoku extends JFrame {
 		c1.weightx=1d;
 		c1.weighty=1d;
 		sudoku.setLayout(new GridLayout(tamanio, tamanio));
-		c1.ipady=100;
+		c1.ipady=250;
 		c1.ipadx=250;
 		c1.gridy=0;
 		c1.fill=GridBagConstraints.BOTH;
@@ -60,7 +60,7 @@ public class InterfazGraficaSudoku extends JFrame {
 			casillas[i / tamanio][i % tamanio] = aux;
 			sudoku.add(aux);
 		}
-		botones.setLayout(new GridLayout(1,2));
+		botones.setLayout(new GridLayout(1,3));
 		JButton resolver = new JButton("Resolver");
 		c1.ipadx=0;
 		c1.ipady=0;
@@ -102,7 +102,23 @@ public class InterfazGraficaSudoku extends JFrame {
 				dispose();
 			}
 		});
+		JButton limpiarSudoku = new JButton("Limpiar el sudoku");
+		limpiarSudoku.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				for (int i = 0; i < tamanio; i++) {
+					for (int j = 0; j < tamanio; j++) {
+						try {
+							casillas[i][j].setText("");;
+						} catch (NumberFormatException e) {
+							//System.out.println("No es un entero el dato de esa posición.");
+						}
+					}
+				}
+			}
+		});
 		botones.add(crearNuevo);
+		botones.add(limpiarSudoku);
 		botones.add(resolver);
 		add(contentPane);
 		//setResizable(false);
