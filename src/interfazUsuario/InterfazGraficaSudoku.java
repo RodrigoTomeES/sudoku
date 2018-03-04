@@ -23,7 +23,7 @@ public class InterfazGraficaSudoku extends JFrame {
 	private JPanel sudoku;
 	private JPanel botones;
 
-	// int tamanio2;
+	 int tamanio2;
 	public InterfazGraficaSudoku(int tamanio) {
 		//tamanio = 5;
 		// tamanio2 = tam
