@@ -60,7 +60,7 @@ public class GrafoConColores extends Grafo {
 	}
 	
 	public boolean esColorValido(Integer vertice,Integer color) {
-		/* {Precondición: vertice y color son dos parámetros de tipo Integer}
+		/* {Precondición: vertice que debe existir en grafoy color son dos parámetros de tipo Integer}
 		 * {Postcondición: comprueba si es un color válido para dicho vértice. Para ello comprueba si es distinto del color de sus vértices asociados.}
 		 */
 		List<Integer> verticesAdyacentes=super.listarVerticesAdyacentes(vertice);
