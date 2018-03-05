@@ -55,7 +55,6 @@ public class InterfazGraficaSudoku extends JFrame {
 			casillas[i / tamanio][i % tamanio] = aux;
 			sudoku.add(aux);
 		}
-
 		botones.setLayout(new GridLayout(1, 3));
 		JButton resolver = new JButton("Resolver");
 		c1.ipadx = 0;
