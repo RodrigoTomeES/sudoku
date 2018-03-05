@@ -64,7 +64,6 @@ public class MenuCreacion extends JFrame {
 						InterfazGraficaSudoku interfazGraficaSudoku = new InterfazGraficaSudoku(tamanio);
 						interfazGraficaSudoku.setVisible(true);
 						dispose();
-						// PREGUNTAR COMO CERRAR VENTANA
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "No se ha introducido un tamaño correcto. Introduce uno correcto, por favor.","Error", JOptionPane.ERROR_MESSAGE);

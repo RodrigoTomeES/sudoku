@@ -3,7 +3,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.TreeMap;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.junit.Test;
 
@@ -79,22 +80,27 @@ public class Tests_SudokuConSolucion {
 	public boolean compruebaSiSudokuBienResuelto(SudokuConSolucion sudokuAResolver) {
 		boolean resultado=true;
 		int tamano = sudokuAResolver.tamanoSudoku();
-		int sumaRangoValores = 45;
 		
-		int sumaAux;
+		Set<Integer> listaDeValores = new TreeSet<>();
+		for(int i=1;i<=sudokuAResolver.tamanoSudoku();i++) {
+			listaDeValores.add(i);
+		}
+		Set<Integer> sumaAux;
 		for(int n = 0; n < tamano && resultado; n++) {
 			int fila = n;
 			int columna = n;
-			sumaAux = 0;
+			sumaAux = new TreeSet<>();
 			for(int j = 0; j < tamano; j++) {
-				sumaAux=sumaAux+sudokuAResolver.getSudokuInicial()[fila][j].getNumero();
+				sumaAux.add(sudokuAResolver.getSudokuInicial()[fila][j].getNumero());
 			}
-			resultado = (sumaAux==sumaRangoValores);
-			sumaAux = 0;
+			sumaAux.removeAll(listaDeValores);
+			resultado = (sumaAux.size()==0);
+			sumaAux = new TreeSet<>();
 			for(int i = 0; i < tamano && resultado; i++) {
-				sumaAux=sumaAux+sudokuAResolver.getSudokuInicial()[i][columna].getNumero(); 
+				sumaAux.add(sudokuAResolver.getSudokuInicial()[i][columna].getNumero());
 			}
-			resultado = (sumaAux==sumaRangoValores);
+			sumaAux.removeAll(listaDeValores);
+			resultado = (sumaAux.size()==0);
 		}
 		
 		int secciones = (int) Math.sqrt(tamano);
@@ -102,13 +108,14 @@ public class Tests_SudokuConSolucion {
 			for(int j = 1; j < tamano && resultado;j=j+secciones) {
 				int esquinaSuperiorCuadranteFila = (i/tamano)*tamano;
 				int esquinaSuperiorCuadranteColumna = (j/tamano)*tamano;
-				sumaAux=0;
+				sumaAux=new TreeSet<>();
 				for(int n=0;n<secciones;n++) {
 					for(int k=0;k<secciones;k++) {
-						sumaAux=sumaAux+sudokuAResolver.getSudokuInicial()[esquinaSuperiorCuadranteFila+n][esquinaSuperiorCuadranteColumna+k].getNumero();
+						sumaAux.add(sudokuAResolver.getSudokuInicial()[esquinaSuperiorCuadranteFila+n][esquinaSuperiorCuadranteColumna+k].getNumero());
 					}
 				}
-				resultado = (sumaAux==sumaRangoValores);
+				sumaAux.removeAll(listaDeValores);
+				resultado = (sumaAux.size()==0);
 			}
 		}
 		return resultado;

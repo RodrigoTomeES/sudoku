@@ -15,7 +15,7 @@ public class GrafoConColores extends Grafo {
 	}
 	
 	public boolean anadirColorAVertice(Integer vertice, Integer color) {
-		/* {Precondición: vertice y color son dos parámetros de tipo Integer.}
+		/* {Precondición: vertice que ya esté en el grafo y color son dos parámetros de tipo Integer.}
 		 * {Postcondición: comprueba en la lista de claves si está el parámetro vértice. Si no está, añade dicho vertice y su color y devuelve cierto.
 		 * En caso contrario devuelve falso y no lo añade}
 		 */
