@@ -89,7 +89,7 @@ public class InterfazGraficaSudoku extends JFrame {
 									sudokuConSolucion.anadirNumeroInicial(dato, i + 1, j + 1);
 								}
 								else {
-									JOptionPane.showMessageDialog(null, "Sólo se permite introducir números entre 1 y tamaño.","Error", JOptionPane.ERROR_MESSAGE);
+									JOptionPane.showMessageDialog(null, "Sólo se permite introducir números entre 1 y " + tamanio + ".","Error", JOptionPane.ERROR_MESSAGE);
 									bienConstruido=false;
 									casillas[i][j].setText("");
 									break lecturaDeDatosDeLosCuadrosDeTexto;
