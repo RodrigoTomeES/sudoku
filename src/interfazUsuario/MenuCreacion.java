@@ -64,16 +64,13 @@ public class MenuCreacion extends JFrame {
 						InterfazGraficaSudoku interfazGraficaSudoku = new InterfazGraficaSudoku(tamanio);
 						interfazGraficaSudoku.setVisible(true);
 						dispose();
-					} else {
-						JOptionPane.showMessageDialog(null,
-								"No se ha introducido un tamaño correcto. Introduce uno correcto, por favor.", "Error",
-								JOptionPane.ERROR_MESSAGE);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "No se ha introducido un tamaño correcto. Introduce uno correcto, por favor.","Error", JOptionPane.ERROR_MESSAGE);
 						textField.setText("");
 					}
 				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null,
-							"No se ha podido crear la interfaz gráfica, ya que el dato introducido no es un entero.",
-							"Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No se ha podido crear la interfaz gráfica, ya que el dato introducido no es un entero.","Error", JOptionPane.ERROR_MESSAGE);
 					textField.setText("");
 				}
 			}
