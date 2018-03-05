@@ -23,10 +23,7 @@ public class InterfazGraficaSudoku extends JFrame {
 	private JPanel sudoku;
 	private JPanel botones;
 
-	// int tamanio2;
 	public InterfazGraficaSudoku(int tamanio) {
-		// tamanio = 5;
-		// tamanio2 = tam
 
 		setTitle("Sudoku");
 		setBounds(100, 100, tamanio * 50, tamanio * 50);
@@ -36,9 +33,6 @@ public class InterfazGraficaSudoku extends JFrame {
 		sudoku = new JPanel();
 		botones = new JPanel();
 
-		// fl_contentPane.setVgap(0);
-		// fl_contentPane.setHgap(0);
-		// contentPane.setLayout(new GridLayout(2, 1, 0, 0));
 		contentPane.setLayout(new GridBagLayout());
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -61,6 +55,7 @@ public class InterfazGraficaSudoku extends JFrame {
 			casillas[i / tamanio][i % tamanio] = aux;
 			sudoku.add(aux);
 		}
+
 		botones.setLayout(new GridLayout(1, 3));
 		JButton resolver = new JButton("Resolver");
 		c1.ipadx = 0;
