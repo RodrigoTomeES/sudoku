@@ -98,6 +98,9 @@ public class Sudoku {
 	}
 	
 	public boolean esCorrectoAnadirValorACasilla(int valor, int fila, int columna) {
+		/* {Precondición: la variable fila y columna serán dos números de tipo entero e irán entre 1 y tamañoSudoku}
+		 * {Postcondición: devuelve cierto si es correcto añiadir el entero de la variable valor en la posición dada por la intersección de la fila y la columna  }
+		 */
 		boolean resultado=true;
 		for(int j=0;j<this.tamanoSudoku()&&resultado;j++) {
 			if(j!=columna-1) {
