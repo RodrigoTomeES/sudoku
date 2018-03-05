@@ -19,7 +19,7 @@ public class GrafoConColores extends Grafo {
 		 * {Postcondición: comprueba en la lista de claves si está el parámetro vértice. Si no está, añade dicho vertice y su color y devuelve cierto.
 		 * En caso contrario devuelve falso y no lo añade}
 		 */
-		boolean esta=(this.verticesColoreado.containsKey(vertice));
+		boolean esta=this.verticesColoreado.containsKey(vertice);
 		if(!esta) {
 			this.verticesColoreado.put(vertice, color);
 		}
@@ -30,7 +30,7 @@ public class GrafoConColores extends Grafo {
 		/* {Precondición: vertice es un parámetro de tipo Integer}
 		 * {Postcondición: si se encontraba dicho vértice devuelve cierto y lo elimina. En caso contrario sólo devuelve falso.}
 		 */
-		boolean esta=(this.verticesColoreado.containsKey(vertice));
+		boolean esta=this.verticesColoreado.containsKey(vertice);
 		if(esta) {
 			this.verticesColoreado.remove(vertice);
 		}
