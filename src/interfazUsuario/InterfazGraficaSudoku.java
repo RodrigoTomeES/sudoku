@@ -150,7 +150,6 @@ public class InterfazGraficaSudoku extends JFrame {
 		botones.add(limpiarSudoku);
 		botones.add(resolver);
 		add(contentPane);
-		// setResizable(false);
 		pack();
 	}
 
