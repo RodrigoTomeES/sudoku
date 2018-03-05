@@ -10,5 +10,6 @@ public class main {
 		prueba.mostrarEstadoSudoku();
 		prueba.resolverSudoku();
 		prueba.mostrarEstadoSudoku();
+		System.out.print(prueba.obtenerValorDeCasilla(3, 3).getNumero());
 	}
 }

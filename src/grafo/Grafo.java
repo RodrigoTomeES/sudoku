@@ -31,7 +31,7 @@ public class Grafo{
 		 * {Postcondición: comprueba si dicho parámetro está, si esta devuelve falso y no lo añade.
 		 * En caso contrario lo añade y devuelve cierto}
 		 */
-		boolean esta=(this.grafo.get(vertice)!=null);
+		boolean esta=this.grafo.containsKey(vertice);
 		if(!esta) {
 			this.grafo.put(vertice,new LinkedList<Integer>());
 		}
